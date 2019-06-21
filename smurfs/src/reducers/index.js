@@ -15,7 +15,7 @@ const InitialState = {
 
 export const reducer = (state = InitialState, action) => {
   switch (action.type) {
-    case actionType.ADDSMURF:
+    case actionType.SAVE:
       return { ...state, smurfs: action.val };
     case actionType.FAILURE:
       return { ...state, error: action.val };

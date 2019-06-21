@@ -1,28 +1,31 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
+.smurf_card{
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  width: 300px;
+  margin: 0 auto;
   padding: 20px;
-  color: white;
+  margin-top: 10px;
+}
+.App >div:nth-of-type(1){
+  width: 70%;
+}
+.App >div:nth-of-type(2){
+  width: 30%;
+  padding: 20px;
+  text-align: left;
+}
+.App >div:nth-of-type(2) input{
+  outline: none;
+  font-size: 16px;
+}
+.App >div:nth-of-type(2) button{
+  outline: none;
+  font-size: 16px;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}

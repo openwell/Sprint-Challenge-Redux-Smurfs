@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import './App.css';
-import {getSmurfs} from '../actions'
-import {connect} from 'react-redux'
+import React, { Component } from "react";
+import "./App.css";
+import { getSmurfs, addSmurf } from "../actions";
+import { connect } from "react-redux";
+import LoginForm from "./LoginForm";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -10,23 +11,43 @@ import {connect} from 'react-redux'
  */
 
 class App extends Component {
-  componentDidMount(){
-   this.props.getSmurfs() 
+  componentDidMount() {
+    this.props.getSmurfs();
   }
+  addSmurfsHandler = e => {
+    e.preventDefault();
+    let data = {
+      name: e.currentTarget[0].value,
+      age: e.currentTarget[1].value,
+      height: e.currentTarget[2].value + 'cm'
+    };
+    this.props.addSmurf(data);
+    e.currentTarget.reset()
+  };
   render() {
-    console.log(this.props)
     return (
       <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your Redux version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
-        {this.props.smurfs.map(elem=> <p key={elem.id}>{elem.name}</p>)}
+        <div>
+          <h1>SMURFS! 2.0 W/ Redux</h1>
+          <div>Welcome to your Redux version of Smurfs!</div>
+          <div>Start inside of your `src/index.js` file!</div>
+          <div>Have fun!</div>
+          {this.props.smurfs.map(elem => (
+            <div key={elem.id} className="smurf_card">
+              <p>{elem.name}</p>
+              <p>
+                Age: <span>{elem.age}</span> Height: <span>{elem.height}</span>{" "}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div>
+          <LoginForm submit={this.addSmurfsHandler} />
+        </div>
       </div>
     );
   }
 }
-
 
 const mapStateToProps = state => {
   return {
@@ -35,6 +56,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { getSmurfs }
+  { getSmurfs, addSmurf }
 )(App);
-
