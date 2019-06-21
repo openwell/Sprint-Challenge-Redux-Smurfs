@@ -40,6 +40,17 @@ export const addSmurf = (data) => dispatch => {
     });
 };
 
+export const updateSmurf = (id, data) => dispatch => {
+  axios
+    .put("http://localhost:3333/smurfs/" +id, data)
+    .then(res => {
+      dispatch(saveSmurf(res.data));
+    })
+    .catch(err => {
+      dispatch(failure(err.message));
+    });
+};
+
 
 export const saveSmurf = res => {
   return {
